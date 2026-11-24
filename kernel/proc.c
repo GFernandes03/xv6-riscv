@@ -728,7 +728,7 @@ getprocs(uint64 uaddr, int max)
     release(&p->lock);
     release(&wait_lock);
 
-    if(copyout(me->pagetable, uaddr + n * sizeof(pi), (char*)&pi, sizeof(pi)) < 0)
+    if(copyout(me->pagetable, me->sz, uaddr + n * sizeof(pi), (char*)&pi, sizeof(pi)) < 0)
       return -1;
     n++;
   }

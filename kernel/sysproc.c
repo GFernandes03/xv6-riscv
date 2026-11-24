@@ -23,7 +23,7 @@ sys_uname(void)
   safestrcpy(u.version,  "UFRRJ-SO-2026", sizeof(u.version));
   safestrcpy(u.machine,  "riscv64", sizeof(u.machine));
 
-  if(copyout(myproc()->pagetable, addr, (char*)&u, sizeof(u)) < 0)
+  if(copyout(myproc()->pagetable, myproc()->sz, addr, (char*)&u, sizeof(u)) < 0)
     return -1;
   return 0;
 }
@@ -37,7 +37,7 @@ sys_meminfo(void)
   argaddr(0, &addr);
   m.total = totalmem();
   m.free  = freemem();
-  if(copyout(myproc()->pagetable, addr, (char*)&m, sizeof(m)) < 0)
+  if(copyout(myproc()->pagetable, myproc()->sz, addr, (char*)&m, sizeof(m)) < 0)
     return -1;
   return 0;
 }

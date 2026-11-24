@@ -604,7 +604,7 @@ sys_getcwd(void)
   len = MAXPATH - pos;                // inclui o '\0'
   if(len > size)
     return -1;
-  if(copyout(myproc()->pagetable, addr, path + pos, len) < 0)
+  if(copyout(myproc()->pagetable, myproc()->sz, addr, path + pos, len) < 0)
     return -1;
   return 0;
 }
