@@ -528,3 +528,83 @@ sys_pipe(void)
   }
   return 0;
 }
+
+uint64
+sys_getcwd(void)
+{
+  uint64 addr;
+  int size, pos, len;
+  char path[MAXPATH];
+  char name[DIRSIZ+1];
+  struct inode *ip, *parent;
+  struct dirent de;
+  uint off, inum;
+  int found;
+
+  argaddr(0, &addr);
+  argint(1, &size);
+  if(size <= 0)
+    return -1;
+
+  pos = MAXPATH - 1;
+  path[pos] = 0;
+
+  begin_op();
+  ip = idup(myproc()->cwd);
+  for(;;){
+    ilock(ip);
+    if(ip->inum == ROOTINO){
+      iunlockput(ip);
+      break;
+    }
+    inum = ip->inum;
+    parent = dirlookup(ip, "..", &off);
+    iunlockput(ip);
+    if(parent == 0){
+      end_op();
+      return -1;
+    }
+
+    ilock(parent);
+    found = 0;
+    for(off = 0; off < parent->size; off += sizeof(de)){
+      if(readi(parent, 0, (uint64)&de, off, sizeof(de)) != sizeof(de))
+        break;
+      if(de.inum != inum)
+        continue;
+      if(strncmp(de.name, ".", DIRSIZ) == 0 || strncmp(de.name, "..", DIRSIZ) == 0)
+        continue;
+      found = 1;
+      break;
+    }
+    if(!found){                       // ex.: cwd foi removido
+      iunlockput(parent);
+      end_op();
+      return -1;
+    }
+    memmove(name, de.name, DIRSIZ);
+    name[DIRSIZ] = 0;
+    len = strlen(name);
+    if(pos < len + 1){                // caminho maior que MAXPATH
+      iunlockput(parent);
+      end_op();
+      return -1;
+    }
+    pos -= len;
+    memmove(path + pos, name, len);
+    path[--pos] = '/';
+    iunlock(parent);
+    ip = parent;                      // segue com a referência de parent
+  }
+  end_op();
+
+  if(pos == MAXPATH - 1)              // estamos na raiz
+    path[--pos] = '/';
+
+  len = MAXPATH - pos;                // inclui o '\0'
+  if(len > size)
+    return -1;
+  if(copyout(myproc()->pagetable, addr, path + pos, len) < 0)
+    return -1;
+  return 0;
+}

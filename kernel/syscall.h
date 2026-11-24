@@ -21,3 +21,7 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_sync   22
+#define SYS_uname    23
+#define SYS_meminfo  24
+#define SYS_getprocs 25
+#define SYS_getcwd   26

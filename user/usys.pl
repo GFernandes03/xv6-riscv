@@ -43,3 +43,7 @@ entry("sbrk");
 entry("pause");
 entry("uptime");
 entry("sync");
+entry("uname");
+entry("meminfo");
+entry("getprocs");
+entry("getcwd");
