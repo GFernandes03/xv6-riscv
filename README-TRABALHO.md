@@ -2,7 +2,7 @@
 
 ## 1. Identificação
 
-- **Integrante:** Guilherme Fernandes (trabalho individual) — matrícula: 20230001015
+- **Integrante:** Guilherme Fernandes — Matrícula: 20230001015
 - **Disciplina:** Sistemas Operacionais — UFRRJ
 - **Repositório base:** https://github.com/mit-pdos/xv6-riscv
 - **Commit-base:** `fa2ddcb7ca87a77af579380a6eafd5aff163b44f` ("usertests: bound the zero-length pipe read regression test")
