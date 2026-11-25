@@ -48,4 +48,3 @@ O código do Claude foi escrito **sem ser compilado**; os erros apareceram ao co
 
 Validação final: `testtrabalho` com 39 PASS e 0 FAIL, `usertests` com ALL TESTS PASSED, `free` estável em 20 ciclos, `ps` sem zumbis, `make clean && make qemu` sem erros.
 
-Li as funções entregues e consigo explicar o caminho `ecall` → `usertrap` → `syscall()` → `sys_*` → retorno, o papel de `copyout`/`psz`, a ordem de locks do `getprocs` e as referências de inode do `getcwd`. [CONFIRMAR antes de assinar]
