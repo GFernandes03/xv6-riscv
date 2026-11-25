@@ -155,6 +155,7 @@ UPROGS=\
 	$U/_free\
 	$U/_ps\
 	$U/_pwd\
+	$U/_testtrabalho\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
