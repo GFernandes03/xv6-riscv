@@ -1,6 +1,6 @@
 # Declaração de uso de LLM
 
-**Integrante:** Guilherme Fernandes (trabalho individual). Houve uso de LLM, conforme abaixo.
+Uso de LLM's para o trabalho por mim, Guilherme Fernandes, conforme abaixo:
 
 ## 1. Ferramentas
 
