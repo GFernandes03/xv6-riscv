@@ -1,9 +1,4 @@
-# Trabalho de Sistemas Operacionas
-
-* **Repositório Base:** https://github.com/mit-pdos/xv6-riscv
-* **Commit Original (Base):** `fa2ddcb7ca87a77af579380a6eafd5aff163b44f`
-
-# Extensão do xv6-RISC-V: uname, free, ps e pwd
+# Trabalho de SO - Extensão do xv6-RISC-V implementando: uname, free, ps e pwd
 
 ## 1. Identificação
 
