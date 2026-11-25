@@ -6,8 +6,8 @@ Uso de LLM's para o trabalho por mim, Guilherme Fernandes, conforme abaixo:
 
 | Ferramenta | Modelo / versão | Plano | Uso |
 |---|---|---|---|
-| Gemini (Google) | [PREENCHER: versão mostrada no seletor de modelos do app] | gratuito | planejamento e orientação |
-| Claude (Anthropic) | [PREENCHER: Claude Sonnet 5.5, conforme o seletor do app] | gratuito | código, testes, depuração e documentação |
+| Gemini (Google) | Auto: se adapta às suas demandas | Gratuito | Planejamento e orientação |
+| Claude (Anthropic) | Claude Sonnet 5.5 | Gratuito | Código, testes, depuração e documentação |
 
 ## 2. Onde foi utilizada
 
