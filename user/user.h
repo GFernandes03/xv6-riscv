@@ -28,10 +28,10 @@ char *sys_sbrk(int, int);
 int pause(int);
 int uptime(void);
 int sync(void);
-int uname(struct utsname*);
-int meminfo(struct meminfo*);
-int getprocs(struct pinfo*, int);
-int getcwd(char*, int);
+int uname(struct utsname *);
+int meminfo(struct meminfo *);
+int getprocs(struct pinfo *, int);
+int getcwd(char *, int);
 
 // ulib.c
 int stat(const char *, struct stat *);

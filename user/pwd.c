@@ -6,7 +6,7 @@ main(void)
 {
   char buf[256];
 
-  if(getcwd(buf, sizeof(buf)) < 0){
+  if (getcwd(buf, sizeof(buf)) < 0) {
     fprintf(2, "pwd: erro ao obter diretório\n");
     exit(1);
   }

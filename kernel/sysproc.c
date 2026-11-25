@@ -16,14 +16,15 @@ sys_uname(void)
   struct utsname u;
 
   argaddr(0, &addr);
-  memset(&u, 0, sizeof(u));          // não vazar lixo da pilha do kernel
-  safestrcpy(u.sysname,  "xv6", sizeof(u.sysname));
+  memset(&u, 0, sizeof(u)); // não vazar lixo da pilha do kernel
+  safestrcpy(u.sysname, "xv6", sizeof(u.sysname));
   safestrcpy(u.nodename, "xv6-host", sizeof(u.nodename));
-  safestrcpy(u.release,  "1.0", sizeof(u.release));
-  safestrcpy(u.version,  "UFRRJ-SO-2026", sizeof(u.version));
-  safestrcpy(u.machine,  "riscv64", sizeof(u.machine));
+  safestrcpy(u.release, "1.0", sizeof(u.release));
+  safestrcpy(u.version, "UFRRJ-SO-2026", sizeof(u.version));
+  safestrcpy(u.machine, "riscv64", sizeof(u.machine));
 
-  if(copyout(myproc()->pagetable, myproc()->sz, addr, (char*)&u, sizeof(u)) < 0)
+  if (copyout(myproc()->pagetable, myproc()->sz, addr, (char *)&u, sizeof(u)) <
+      0)
     return -1;
   return 0;
 }
@@ -36,8 +37,9 @@ sys_meminfo(void)
 
   argaddr(0, &addr);
   m.total = totalmem();
-  m.free  = freemem();
-  if(copyout(myproc()->pagetable, myproc()->sz, addr, (char*)&m, sizeof(m)) < 0)
+  m.free = freemem();
+  if (copyout(myproc()->pagetable, myproc()->sz, addr, (char *)&m, sizeof(m)) <
+      0)
     return -1;
   return 0;
 }
@@ -50,7 +52,7 @@ sys_getprocs(void)
 
   argaddr(0, &addr);
   argint(1, &max);
-  if(max <= 0)
+  if (max <= 0)
     return -1;
   return getprocs(addr, max);
 }

@@ -711,24 +711,25 @@ getprocs(uint64 uaddr, int max)
   struct pinfo pi;
   int n = 0;
 
-  for(p = proc; p < &proc[NPROC] && n < max; p++){
+  for (p = proc; p < &proc[NPROC] && n < max; p++) {
     acquire(&wait_lock);
     acquire(&p->lock);
-    if(p->state == UNUSED){
+    if (p->state == UNUSED) {
       release(&p->lock);
       release(&wait_lock);
       continue;
     }
     memset(&pi, 0, sizeof(pi));
-    pi.pid   = p->pid;
-    pi.ppid  = p->parent ? p->parent->pid : 0;
+    pi.pid = p->pid;
+    pi.ppid = p->parent ? p->parent->pid : 0;
     pi.state = p->state;
-    pi.sz    = p->sz;
+    pi.sz = p->sz;
     safestrcpy(pi.name, p->name, sizeof(pi.name));
     release(&p->lock);
     release(&wait_lock);
 
-    if(copyout(me->pagetable, me->sz, uaddr + n * sizeof(pi), (char*)&pi, sizeof(pi)) < 0)
+    if (copyout(me->pagetable, me->sz, uaddr + n * sizeof(pi), (char *)&pi,
+                sizeof(pi)) < 0)
       return -1;
     n++;
   }
